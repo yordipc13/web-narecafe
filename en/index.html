@@ -42,14 +42,21 @@
         <a href="#contacto">Contact</a>
       </nav>
 
-      <nav class="language-switch" aria-label="Language">
-        <a href="../" data-language="es" hreflang="es">
-          <span class="flag flag-cr" aria-hidden="true"></span><span>Español</span>
-        </a>
-        <a href="./" data-language="en" aria-current="page" hreflang="en">
-          <span class="flag flag-us" aria-hidden="true"></span><span>English</span>
-        </a>
-      </nav>
+      <details class="language-switch">
+        <summary aria-label="Change language">
+          <span class="flag flag-us" aria-hidden="true"></span>
+          <span class="language-name">English</span>
+          <span class="language-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="language-options">
+          <a href="../" data-language="es" hreflang="es">
+            <span class="flag flag-cr" aria-hidden="true"></span><span>Español</span>
+          </a>
+          <a href="./" data-language="en" aria-current="page" hreflang="en">
+            <span class="flag flag-us" aria-hidden="true"></span><span>English</span>
+          </a>
+        </div>
+      </details>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -110,9 +117,14 @@
             </div>
           </div>
 
-          <figure class="section-photo reveal">
-            <img src="../assets/images/sobre-nosotros.webp" alt="Coffee farms among Naranjo's green landscape" width="1200" height="800" loading="lazy">
-          </figure>
+          <div class="story-images reveal">
+            <figure class="section-photo">
+              <img src="../assets/images/sobre-nosotros.webp" alt="Coffee farms among Naranjo's green landscape" width="1200" height="800" loading="lazy">
+            </figure>
+            <figure class="section-photo story-photo-secondary">
+              <img src="../assets/images/sobre-nosotros-2.webp" alt="A coffee producer harvesting red coffee cherries" width="1400" height="933" loading="lazy">
+            </figure>
+          </div>
         </div>
 
         <div class="purpose-grid">

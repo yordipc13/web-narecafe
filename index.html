@@ -42,14 +42,21 @@
         <a href="#contacto">Contacto</a>
       </nav>
 
-      <nav class="language-switch" aria-label="Idioma">
-        <a href="./" data-language="es" aria-current="page" hreflang="es">
-          <span class="flag flag-cr" aria-hidden="true"></span><span>Español</span>
-        </a>
-        <a href="en/" data-language="en" hreflang="en">
-          <span class="flag flag-us" aria-hidden="true"></span><span>English</span>
-        </a>
-      </nav>
+      <details class="language-switch">
+        <summary aria-label="Cambiar idioma">
+          <span class="flag flag-cr" aria-hidden="true"></span>
+          <span class="language-name">Español</span>
+          <span class="language-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="language-options">
+          <a href="./" data-language="es" aria-current="page" hreflang="es">
+            <span class="flag flag-cr" aria-hidden="true"></span><span>Español</span>
+          </a>
+          <a href="en/" data-language="en" hreflang="en">
+            <span class="flag flag-us" aria-hidden="true"></span><span>English</span>
+          </a>
+        </div>
+      </details>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
         <span></span><span></span><span></span>
@@ -110,9 +117,14 @@
             </div>
           </div>
 
-          <figure class="section-photo reveal">
-            <img src="assets/images/sobre-nosotros.webp" alt="Fincas cafetaleras entre el paisaje verde de Naranjo" width="1200" height="800" loading="lazy">
-          </figure>
+          <div class="story-images reveal">
+            <figure class="section-photo">
+              <img src="assets/images/sobre-nosotros.webp" alt="Fincas cafetaleras entre el paisaje verde de Naranjo" width="1200" height="800" loading="lazy">
+            </figure>
+            <figure class="section-photo story-photo-secondary">
+              <img src="assets/images/sobre-nosotros-2.webp" alt="Productora recolectando café entre las plantas" width="1400" height="933" loading="lazy">
+            </figure>
+          </div>
         </div>
 
         <div class="purpose-grid">
