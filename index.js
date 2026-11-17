@@ -38,6 +38,17 @@
     });
   });
 
+  const languageToggle = document.getElementById("language-toggle");
+  if (languageToggle) {
+    languageToggle.addEventListener("click", function () {
+      const nextLanguage = currentLanguage === "es" ? "en" : "es";
+      saveLanguage(nextLanguage);
+      window.location.assign(nextLanguage === "en"
+        ? (currentLanguage === "es" ? "en/" : "./")
+        : (currentLanguage === "en" ? "../" : "./"));
+    });
+  }
+
   const menu = document.getElementById("mobile-menu");
   const menuToggle = document.querySelector(".menu-toggle");
   const menuBackdrop = document.querySelector(".menu-backdrop");

@@ -42,21 +42,10 @@
         <a href="#contacto">Contact</a>
       </nav>
 
-      <details class="language-switch">
-        <summary aria-label="Change language">
-          <span class="flag flag-us" aria-hidden="true"></span>
-          <span class="language-name">English</span>
-          <span class="language-chevron" aria-hidden="true">⌄</span>
-        </summary>
-        <div class="language-options">
-          <a href="../" data-language="es" hreflang="es">
-            <span class="flag flag-cr" aria-hidden="true"></span><span>Español</span>
-          </a>
-          <a href="./" data-language="en" aria-current="page" hreflang="en">
-            <span class="flag flag-us" aria-hidden="true"></span><span>English</span>
-          </a>
-        </div>
-      </details>
+      <button class="language-switch" id="language-toggle" type="button" aria-label="Switch to Español">
+        <span class="flag flag-us" aria-hidden="true"></span>
+        <span class="language-name">English</span>
+      </button>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -224,11 +213,11 @@
         </div>
 
         <ul class="contact-list reveal">
-          <li><span>WhatsApp</span><a href="https://wa.me/50688510663" target="_blank" rel="noreferrer">+506 8851 0663</a></li>
-          <li><span>Email</span><a href="mailto:narecafecr@gmail.com">narecafecr@gmail.com</a></li>
-          <li><span>Instagram</span><a href="https://instagram.com/narecafe.njo" target="_blank" rel="noreferrer">@narecafe.njo</a></li>
-          <li><span>Facebook</span><a href="https://www.facebook.com/profile.php?id=61596400772446" target="_blank" rel="noreferrer">View profile</a></li>
-          <li><span>TikTok</span><a href="https://www.tiktok.com/@narecafe.njo" target="_blank" rel="noreferrer">@narecafe.njo</a></li>
+          <li><img class="contact-icon" src="../assets/icons/whatsapp_logo.png" alt="" width="128" height="128"><span>WhatsApp</span><a href="https://wa.me/50688510663" target="_blank" rel="noreferrer">+506 8851 0663</a></li>
+          <li><svg class="contact-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="#d62c2c"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Email</span><a href="mailto:narecafecr@gmail.com">narecafecr@gmail.com</a></li>
+          <li><img class="contact-icon" src="../assets/icons/instagram_logo.png" alt="" width="128" height="128"><span>Instagram</span><a href="https://instagram.com/narecafe.njo" target="_blank" rel="noreferrer">@narecafe.njo</a></li>
+          <li><img class="contact-icon" src="../assets/icons/facebook_logo.png" alt="" width="128" height="128"><span>Facebook</span><a href="https://www.facebook.com/profile.php?id=61596400772446" target="_blank" rel="noreferrer">View profile</a></li>
+          <li><img class="contact-icon" src="../assets/icons/tiktok_logo.png" alt="" width="128" height="128"><span>TikTok</span><a href="https://www.tiktok.com/@narecafe.njo" target="_blank" rel="noreferrer">@narecafe.njo</a></li>
         </ul>
       </div>
     </section>
@@ -248,14 +237,14 @@
       </nav>
       <div class="footer-contact">
         <p><strong>Contact</strong></p>
-        <a href="mailto:narecafecr@gmail.com">narecafecr@gmail.com</a>
-        <a href="https://wa.me/50688510663" target="_blank" rel="noreferrer">WhatsApp +506 8851 0663</a>
+        <a href="mailto:narecafecr@gmail.com"><svg class="footer-mail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="#d62c2c"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>narecafecr@gmail.com</a>
+        <a href="https://wa.me/50688510663" target="_blank" rel="noreferrer"><img class="footer-contact-icon" src="../assets/icons/whatsapp_logo.png" alt="">+506 8851 0663</a>
       </div>
       <div class="social-links">
-        <a href="https://wa.me/50688510663" target="_blank" rel="noreferrer" aria-label="WhatsApp">WA</a>
-        <a href="https://instagram.com/narecafe.njo" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
-        <a href="https://www.facebook.com/profile.php?id=61596400772446" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
-        <a href="https://www.tiktok.com/@narecafe.njo" target="_blank" rel="noreferrer" aria-label="TikTok">TT</a>
+        <a href="https://wa.me/50688510663" target="_blank" rel="noreferrer" aria-label="WhatsApp"><img src="../assets/icons/whatsapp_logo.png" alt=""></a>
+        <a href="https://instagram.com/narecafe.njo" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="../assets/icons/instagram_logo.png" alt=""></a>
+        <a href="https://www.facebook.com/profile.php?id=61596400772446" target="_blank" rel="noreferrer" aria-label="Facebook"><img src="../assets/icons/facebook_logo.png" alt=""></a>
+        <a href="https://www.tiktok.com/@narecafe.njo" target="_blank" rel="noreferrer" aria-label="TikTok"><img src="../assets/icons/tiktok_logo.png" alt=""></a>
       </div>
     </div>
   </footer>
