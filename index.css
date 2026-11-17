@@ -156,7 +156,7 @@ a {
 
 .header-row {
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr) 84px;
+  grid-template-columns: 96px minmax(0, 1fr) 96px;
   min-height: 88px;
   align-items: center;
 }
@@ -168,8 +168,8 @@ a {
 }
 
 .brand img {
-  width: 72px;
-  height: 72px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
 }
 
@@ -200,7 +200,7 @@ a {
   justify-self: end;
   display: inline-flex;
   min-height: 38px;
-  padding: 6px 9px;
+  padding: 6px 10px;
   border: 1px solid var(--line);
   border-color: var(--blue);
   border-radius: 999px;
@@ -375,6 +375,30 @@ a {
     linear-gradient(0deg, rgb(27 29 33 / 0.52), transparent 42%);
 }
 
+.hero-motif {
+  position: absolute;
+  z-index: 1;
+  width: clamp(54px, 6vw, 92px);
+  height: auto;
+  opacity: 0.42;
+  pointer-events: none;
+  filter: brightness(0) saturate(100%) invert(86%) sepia(18%) saturate(842%)
+    hue-rotate(121deg) brightness(92%) contrast(88%);
+}
+
+.hero-motif-left {
+  bottom: 20px;
+  left: 18px;
+  transform: rotate(-12deg);
+}
+
+.hero-motif-right {
+  right: 18px;
+  bottom: 76px;
+  width: clamp(62px, 7vw, 104px);
+  transform: rotate(8deg);
+}
+
 .hero-content {
   display: grid;
   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
@@ -450,6 +474,92 @@ a {
 
 .section {
   padding-block: 112px;
+}
+
+.intro-section,
+.practices,
+.gallery-section,
+.contact-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.intro-section::before,
+.intro-section::after,
+.practices::before,
+.gallery-section::before,
+.gallery-section::after,
+.contact-section::before {
+  position: absolute;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  content: "";
+  pointer-events: none;
+}
+
+.intro-section::before {
+  top: 44px;
+  right: -18px;
+  width: 170px;
+  height: 170px;
+  opacity: 0.09;
+  background-image: url("insumos/elementos_gráficos/grano_cafe.png");
+  transform: rotate(28deg);
+}
+
+.intro-section::after {
+  bottom: 28px;
+  left: -28px;
+  width: 240px;
+  height: 110px;
+  opacity: 0.11;
+  background-image: url("insumos/elementos_gráficos/ramita.png");
+  transform: rotate(-8deg);
+}
+
+.practices::before {
+  right: 2%;
+  bottom: 18px;
+  width: 190px;
+  height: 190px;
+  opacity: 0.07;
+  background-image: url("insumos/elementos_gráficos/grano_cafe.png");
+  filter: sepia(1) hue-rotate(330deg) saturate(0.8);
+  transform: rotate(-18deg);
+}
+
+.gallery-section::before {
+  top: 18px;
+  left: 20px;
+  width: 150px;
+  height: 150px;
+  opacity: 0.08;
+  background-image: url("insumos/elementos_gráficos/colibrí.png");
+  transform: rotate(-12deg);
+}
+
+.gallery-section::after {
+  right: -8px;
+  bottom: 30px;
+  width: 210px;
+  height: 100px;
+  opacity: 0.08;
+  background-image: url("insumos/elementos_gráficos/ramita.png");
+  transform: rotate(10deg);
+}
+
+.contact-section::before {
+  right: -18px;
+  bottom: 18px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.1;
+  background-image: url("insumos/elementos_gráficos/colibrí.png");
+  filter: brightness(0) saturate(100%) invert(94%);
+  transform: rotate(18deg);
 }
 
 .section-heading {
@@ -1129,8 +1239,17 @@ a {
   }
 
   .brand img {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
+  }
+
+  .language-switch {
+    min-height: 36px;
+    padding-inline: 8px;
+  }
+
+  .language-name {
+    font-size: 0.72rem;
   }
 
   .hero {
@@ -1147,10 +1266,24 @@ a {
   }
 
   .hero-logo {
-    width: 180px;
-    height: 180px;
+    width: min(62vw, 240px);
+    height: min(62vw, 240px);
     justify-self: center;
     margin-bottom: 8px;
+  }
+
+  .hero-motif {
+    width: 58px;
+    opacity: 0.28;
+  }
+
+  .hero-motif-left {
+    bottom: 12px;
+  }
+
+  .hero-motif-right {
+    right: 8px;
+    bottom: 46px;
   }
 
   .hero-copy {
