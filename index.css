@@ -592,15 +592,16 @@ a {
 }
 
 .story-motif-hummingbird {
-  top: -42px;
-  left: 50%;
+  top: -58px;
+  left: -68px;
   width: 86px;
   transform: rotate(-8deg);
 }
 
 .story-motif-ramita {
-  bottom: -38px;
-  left: -42px;
+  right: -46px;
+  bottom: -44px;
+  left: auto;
   width: 116px;
   transform: rotate(-12deg);
 }
@@ -750,9 +751,9 @@ a {
 
 .service-motif {
   position: absolute;
-  right: -8px;
-  top: 30px;
-  width: 38px;
+  right: -18px;
+  top: 18px;
+  width: 46px;
   height: auto;
   opacity: 0.85;
   pointer-events: none;
@@ -799,8 +800,9 @@ a {
 
 .gallery-motif {
   position: absolute;
-  top: -16px;
-  right: -74px;
+  top: -26px;
+  right: auto;
+  left: -58px;
   width: 68px;
   height: auto;
   pointer-events: none;
@@ -905,8 +907,8 @@ a {
 
 .contact-motif {
   position: absolute;
-  right: -48px;
-  bottom: -58px;
+  right: -28px;
+  bottom: -42px;
   z-index: 2;
   width: 118px;
   height: auto;
@@ -1373,21 +1375,28 @@ a {
   }
 
   .story-motif-hummingbird {
+    top: -42px;
+    left: -18px;
     width: 58px;
   }
 
   .story-motif-ramita {
+    right: -18px;
+    bottom: -32px;
+    left: auto;
     width: 72px;
   }
 
   .service-motif {
     right: -8px;
+    top: 12px;
     width: 38px;
   }
 
   .gallery-motif {
-    top: -8px;
-    right: -48px;
+    top: -18px;
+    right: auto;
+    left: -42px;
     width: 48px;
   }
 
