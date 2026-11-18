@@ -426,12 +426,6 @@ a {
     hue-rotate(121deg) brightness(92%) contrast(88%);
 }
 
-.hero-motif-left {
-  bottom: 20px;
-  left: 18px;
-  transform: rotate(-12deg);
-}
-
 .hero-content {
   display: grid;
   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
@@ -1341,10 +1335,6 @@ a {
   .hero-motif {
     width: 58px;
     opacity: 0.28;
-  }
-
-  .hero-motif-left {
-    bottom: 12px;
   }
 
   .hero-copy {

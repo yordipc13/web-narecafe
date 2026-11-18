@@ -3,7 +3,6 @@
 
   const storageKey = "narecafe-motif-editor-v1";
   const selectors = [
-    ".hero-motif-left",
     ".story-motif-hummingbird",
     ".story-motif-ramita",
     ".service-motif",

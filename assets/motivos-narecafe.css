@@ -16,13 +16,6 @@
   bottom: auto;
   transform: rotate(5deg);
 }
-.hero-motif-left {
-  position: absolute;
-  left: 20px;
-  top: 634px;
-  right: auto;
-  bottom: auto;
-}
 .service-motif {
   position: absolute;
   left: 363px;
