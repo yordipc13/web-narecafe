@@ -1,0 +1,49 @@
+/* Posiciones exportadas del editor NARECAFÉ */
+.story-motif-ramita {
+  position: absolute;
+  left: 570px;
+  top: 487px;
+  right: auto;
+  bottom: auto;
+  width: 88px;
+  transform: rotate(5deg);
+}
+.story-motif-hummingbird {
+  position: absolute;
+  left: -65px;
+  top: -47px;
+  right: auto;
+  bottom: auto;
+  transform: rotate(5deg);
+}
+.hero-motif-left {
+  position: absolute;
+  left: 20px;
+  top: 634px;
+  right: auto;
+  bottom: auto;
+}
+.service-motif {
+  position: absolute;
+  left: 363px;
+  top: 11px;
+  right: auto;
+  bottom: auto;
+  width: 93px;
+}
+.gallery-motif {
+  position: absolute;
+  left: -61px;
+  top: -38px;
+  right: auto;
+  bottom: auto;
+  transform: rotate(7deg);
+}
+.contact-motif {
+  position: absolute;
+  left: 638px;
+  top: 378px;
+  right: auto;
+  bottom: auto;
+  width: 84px;
+}
