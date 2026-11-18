@@ -1220,6 +1220,10 @@ a {
     display: none;
   }
 
+  .header-actions .language-switch {
+    display: none;
+  }
+
   .header-row {
     grid-template-columns: 72px minmax(0, 1fr) auto 46px;
   }
