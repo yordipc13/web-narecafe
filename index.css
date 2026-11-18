@@ -561,6 +561,7 @@ a {
   grid-template-columns: 1fr 1fr;
   gap: 14px;
   align-items: stretch;
+  position: relative;
 }
 
 .story-images .section-photo {
@@ -597,15 +598,16 @@ a {
 }
 
 .story-motif-hummingbird {
-  top: 10px;
-  left: 12px;
+  top: -42px;
+  left: 50%;
+  width: 86px;
   transform: rotate(-8deg);
 }
 
 .story-motif-ramita {
-  bottom: 8px;
-  left: 8px;
-  width: 108px;
+  bottom: -38px;
+  left: -42px;
+  width: 116px;
   transform: rotate(-12deg);
 }
 
@@ -754,9 +756,9 @@ a {
 
 .service-motif {
   position: absolute;
-  right: -28px;
-  bottom: 12px;
-  width: 54px;
+  right: -8px;
+  top: 30px;
+  width: 38px;
   height: auto;
   opacity: 0.85;
   pointer-events: none;
