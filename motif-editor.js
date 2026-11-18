@@ -91,6 +91,47 @@
     if (state.color) recolorImage(element, state.color);
   }
 
+  function restoreCustomMotifs() {
+    Object.keys(states).forEach(function (key) {
+      if (!key.startsWith("motivo-")) return;
+      const state = states[key];
+      if (state.hidden) return;
+      if (document.querySelector('[data-motif-id="' + key + '"]')) return;
+
+      const image = document.createElement("img");
+      image.className = "motif-editable motif-custom";
+      image.dataset.motifId = key;
+      image.src = state.src || ((document.documentElement.lang === "en" ? "../" : "") + "assets/graphics/grano_cafe.webp");
+      image.alt = "";
+      image.setAttribute("aria-hidden", "true");
+      image.style.position = "absolute";
+      image.style.left = (state.left !== undefined ? state.left : 100) + "px";
+      image.style.top = (state.top !== undefined ? state.top : 100) + "px";
+      image.style.right = "auto";
+      image.style.bottom = "auto";
+      image.style.width = (state.width || 80) + "px";
+      image.style.transform = "rotate(" + (state.rotation || 0) + "deg)";
+      image.style.pointerEvents = "auto";
+      document.body.appendChild(image);
+      ensureOriginalSrc(image);
+      applyState(image);
+      bindCustomMotif(image);
+    });
+  }
+
+  function bindCustomMotif(image) {
+    image.addEventListener("pointerdown", function (event) {
+      if (!document.body.classList.contains("motif-editor-active")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      selectElement(image);
+      const rect = image.getBoundingClientRect();
+      dragOffset.x = event.clientX - rect.left;
+      dragOffset.y = event.clientY - rect.top;
+      dragging = true;
+    });
+  }
+
   function collectEditableElements() {
     const elements = [];
     selectors.forEach(function (selector) {
@@ -181,6 +222,8 @@
     applyState(element);
   });
 
+  restoreCustomMotifs();
+
   collectEditableElements().forEach(function (element) {
     element.addEventListener("pointerdown", function (event) {
       if (!document.body.classList.contains("motif-editor-active")) return;
@@ -251,8 +294,12 @@
   });
 
   panel.querySelector('[data-action="save"]').addEventListener("click", function () {
-    saveStates();
-    status.textContent = "Posiciones guardadas.";
+    try {
+      saveStates();
+      status.textContent = "Guardado permanentemente en este navegador.";
+    } catch (error) {
+      status.textContent = "No se pudo guardar. El navegador bloqueó el almacenamiento.";
+    }
   });
 
   panel.querySelector('[data-action="delete"]').addEventListener("click", function () {
@@ -299,8 +346,10 @@
   panel.querySelector('[data-add="1"]').addEventListener("click", function () {
     const image = document.createElement("img");
     image.className = "motif-editable motif-custom";
-    image.dataset.motifId = "motivo-" + Date.now();
-    image.src = (document.documentElement.lang === "en" ? "../" : "") + "assets/graphics/grano_cafe.webp";
+    const motifId = "motivo-" + Date.now();
+    image.dataset.motifId = motifId;
+    const source = (document.documentElement.lang === "en" ? "../" : "") + "assets/graphics/grano_cafe.webp";
+    image.src = source;
     image.alt = "";
     image.setAttribute("aria-hidden", "true");
     image.style.position = "absolute";
@@ -310,15 +359,14 @@
     image.style.pointerEvents = "auto";
     document.body.appendChild(image);
     ensureOriginalSrc(image);
-    image.addEventListener("pointerdown", function (event) {
-      if (!document.body.classList.contains("motif-editor-active")) return;
-      event.preventDefault();
-      selectElement(image);
-      const rect = image.getBoundingClientRect();
-      dragOffset.x = event.clientX - rect.left;
-      dragOffset.y = event.clientY - rect.top;
-      dragging = true;
-    });
+    states[motifId] = {
+      left: window.scrollX + window.innerWidth / 2 - 40,
+      top: window.scrollY + window.innerHeight / 2 - 40,
+      width: 80,
+      rotation: 0,
+      src: source
+    };
+    bindCustomMotif(image);
     selectElement(image);
   });
 
