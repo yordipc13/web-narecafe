@@ -134,6 +134,7 @@
 .motif-editor-active .motif-editable {
   cursor: move;
   outline-color: rgb(18 129 170 / 0.28);
+  pointer-events: auto !important;
 }
 
 .motif-editor-selected {

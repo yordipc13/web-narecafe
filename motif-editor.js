@@ -14,6 +14,7 @@
 
   let activeElement = null;
   let dragOffset = { x: 0, y: 0 };
+  let dragging = false;
   let states = loadStates();
 
   function loadStates() {
@@ -181,36 +182,49 @@
   });
 
   collectEditableElements().forEach(function (element) {
-    element.addEventListener("click", function () {
-      if (document.body.classList.contains("motif-editor-active")) {
-        selectElement(element);
-      }
-    });
     element.addEventListener("pointerdown", function (event) {
       if (!document.body.classList.contains("motif-editor-active")) return;
       event.preventDefault();
+      event.stopPropagation();
       selectElement(element);
       const rect = element.getBoundingClientRect();
       dragOffset.x = event.clientX - rect.left;
       dragOffset.y = event.clientY - rect.top;
-      try {
-        element.setPointerCapture(event.pointerId);
-      } catch (error) {
-        // Synthetic pointer events cannot establish pointer capture.
-      }
-    });
-
-    element.addEventListener("pointermove", function (event) {
-      if (!element.hasPointerCapture(event.pointerId)) return;
-      setElementPosition(element, event.clientX - dragOffset.x, event.clientY - dragOffset.y);
-    });
-
-    element.addEventListener("pointerup", function (event) {
-      if (element.hasPointerCapture(event.pointerId)) {
-        element.releasePointerCapture(event.pointerId);
-      }
+      dragging = true;
     });
   });
+
+  window.addEventListener("pointermove", function (event) {
+    if (!dragging || !activeElement) return;
+    setElementPosition(activeElement, event.clientX - dragOffset.x, event.clientY - dragOffset.y);
+  });
+
+  window.addEventListener("pointerup", function () {
+    dragging = false;
+  });
+
+  document.addEventListener("pointerdown", function (event) {
+    if (!document.body.classList.contains("motif-editor-active")) return;
+    const pointedElement = document.elementFromPoint(event.clientX, event.clientY);
+    const element = pointedElement ? pointedElement.closest(selectors.join(",")) : null;
+    if (!element) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    selectElement(element);
+    const rect = element.getBoundingClientRect();
+    dragOffset.x = event.clientX - rect.left;
+    dragOffset.y = event.clientY - rect.top;
+    dragging = true;
+  }, true);
+
+  document.addEventListener("click", function (event) {
+    if (!document.body.classList.contains("motif-editor-active")) return;
+    const element = event.target.closest(selectors.join(","));
+    if (element) {
+      selectElement(element);
+    }
+  }, true);
 
   size.addEventListener("input", function () {
     if (!activeElement) return;
@@ -303,14 +317,7 @@
       const rect = image.getBoundingClientRect();
       dragOffset.x = event.clientX - rect.left;
       dragOffset.y = event.clientY - rect.top;
-      image.setPointerCapture(event.pointerId);
-    });
-    image.addEventListener("pointermove", function (event) {
-      if (!image.hasPointerCapture(event.pointerId)) return;
-      setElementPosition(image, event.clientX - dragOffset.x, event.clientY - dragOffset.y);
-    });
-    image.addEventListener("pointerup", function (event) {
-      if (image.hasPointerCapture(event.pointerId)) image.releasePointerCapture(event.pointerId);
+      dragging = true;
     });
     selectElement(image);
   });
