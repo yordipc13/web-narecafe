@@ -71,11 +71,12 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: 88px;
 }
 
 body {
   margin: 0;
+  padding-top: 88px;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
@@ -148,17 +149,56 @@ a {
 }
 
 .site-header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 20;
   border-bottom: 1px solid rgb(27 29 33 / 0.08);
   background: rgb(255 255 255 / 0.96);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
+}
+
+.site-header.header-hidden {
+  transform: translateY(-105%);
 }
 
 .header-row {
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr) 96px;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
   min-height: 88px;
   align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+.header-whatsapp {
+  display: inline-flex;
+  min-height: 42px;
+  padding: 7px 14px 7px 9px;
+  border-radius: 999px;
+  align-items: center;
+  gap: 7px;
+  color: #fff;
+  background: #25d366;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 5px 16px rgb(37 211 102 / 0.18);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.header-whatsapp img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
 }
 
 .brand {
@@ -1144,6 +1184,11 @@ a {
     width: 100%;
   }
 
+  .header-whatsapp:hover {
+    background: #1ebe5b;
+    transform: translateY(-1px);
+  }
+
   .gallery-button:hover {
     box-shadow: var(--shadow);
     transform: translateY(-3px);
@@ -1176,15 +1221,16 @@ a {
   }
 
   .header-row {
-    grid-template-columns: 72px minmax(0, 1fr) 46px;
+    grid-template-columns: 72px minmax(0, 1fr) auto 46px;
   }
 
-  .header-row > .language-switch {
-    justify-self: end;
+  .header-actions {
+    grid-column: 3;
   }
 
   .menu-toggle {
     display: block;
+    grid-column: 4;
     margin-left: 0;
   }
 
@@ -1233,8 +1279,16 @@ a {
     --container: min(100% - 32px, 1160px);
   }
 
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  body {
+    padding-top: 76px;
+  }
+
   .header-row {
-    grid-template-columns: 58px minmax(0, 1fr) 46px;
+    grid-template-columns: 58px minmax(0, 1fr) auto 46px;
     min-height: 76px;
   }
 
@@ -1246,6 +1300,21 @@ a {
   .language-switch {
     min-height: 36px;
     padding-inline: 8px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .header-whatsapp {
+    min-height: 36px;
+    padding: 5px 9px 5px 6px;
+    font-size: 0.76rem;
+  }
+
+  .header-whatsapp img {
+    width: 24px;
+    height: 24px;
   }
 
   .language-name {

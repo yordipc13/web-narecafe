@@ -49,6 +49,36 @@
     });
   }
 
+  const siteHeader = document.querySelector(".site-header");
+  let lastScrollPosition = window.scrollY;
+  let headerTicking = false;
+
+  function updateHeader() {
+    const currentScrollPosition = window.scrollY;
+    const menuIsOpen = document.body.classList.contains("menu-open");
+    const dialogIsOpen = document.body.classList.contains("dialog-open");
+    const movingDown = currentScrollPosition > lastScrollPosition;
+    const scrollAmount = Math.abs(currentScrollPosition - lastScrollPosition);
+
+    if (!menuIsOpen && !dialogIsOpen && scrollAmount > 6) {
+      if (movingDown && currentScrollPosition > 88) {
+        siteHeader.classList.add("header-hidden");
+      } else if (!movingDown) {
+        siteHeader.classList.remove("header-hidden");
+      }
+    }
+
+    lastScrollPosition = currentScrollPosition;
+    headerTicking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!headerTicking) {
+      window.requestAnimationFrame(updateHeader);
+      headerTicking = true;
+    }
+  }, { passive: true });
+
   const menu = document.getElementById("mobile-menu");
   const menuToggle = document.querySelector(".menu-toggle");
   const menuBackdrop = document.querySelector(".menu-backdrop");
