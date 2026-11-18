@@ -154,6 +154,21 @@ a {
   background: rgb(255 255 255 / 0.96);
 }
 
+.header-motif {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -12px;
+  left: 0;
+  height: 24px;
+  background-image: url("assets/graphics/grano-chain.webp");
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: 180px 36px;
+  filter: saturate(1.08);
+  pointer-events: none;
+}
+
 .header-row {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr) 96px;
@@ -506,7 +521,7 @@ a {
   width: 170px;
   height: 170px;
   opacity: 0.09;
-  background-image: url("insumos/elementos_gráficos/grano_cafe.png");
+  background-image: url("assets/graphics/grano_cafe.webp");
   transform: rotate(28deg);
 }
 
@@ -516,7 +531,7 @@ a {
   width: 240px;
   height: 110px;
   opacity: 0.11;
-  background-image: url("insumos/elementos_gráficos/ramita.png");
+  background-image: url("assets/graphics/ramita.webp");
   transform: rotate(-8deg);
 }
 
@@ -526,7 +541,7 @@ a {
   width: 190px;
   height: 190px;
   opacity: 0.07;
-  background-image: url("insumos/elementos_gráficos/grano_cafe.png");
+  background-image: url("assets/graphics/grano_cafe.webp");
   filter: sepia(1) hue-rotate(330deg) saturate(0.8);
   transform: rotate(-18deg);
 }
@@ -537,7 +552,7 @@ a {
   width: 150px;
   height: 150px;
   opacity: 0.08;
-  background-image: url("insumos/elementos_gráficos/colibrí.png");
+  background-image: url("assets/graphics/colibri.webp");
   transform: rotate(-12deg);
 }
 
@@ -547,7 +562,7 @@ a {
   width: 210px;
   height: 100px;
   opacity: 0.08;
-  background-image: url("insumos/elementos_gráficos/ramita.png");
+  background-image: url("assets/graphics/ramita.webp");
   transform: rotate(10deg);
 }
 
@@ -557,7 +572,7 @@ a {
   width: 220px;
   height: 220px;
   opacity: 0.1;
-  background-image: url("insumos/elementos_gráficos/colibrí.png");
+  background-image: url("assets/graphics/colibri.webp");
   filter: brightness(0) saturate(100%) invert(94%);
   transform: rotate(18deg);
 }
@@ -1231,6 +1246,12 @@ a {
 @media (max-width: 660px) {
   :root {
     --container: min(100% - 32px, 1160px);
+  }
+
+  .header-motif {
+    bottom: -8px;
+    height: 18px;
+    background-size: 120px 24px;
   }
 
   .header-row {
