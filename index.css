@@ -154,21 +154,6 @@ a {
   background: rgb(255 255 255 / 0.96);
 }
 
-.header-motif {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: -12px;
-  left: 0;
-  height: 24px;
-  background-image: url("assets/graphics/grano-chain.webp");
-  background-repeat: repeat-x;
-  background-position: center bottom;
-  background-size: 180px 36px;
-  filter: saturate(1.08);
-  pointer-events: none;
-}
-
 .header-row {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr) 96px;
@@ -1246,12 +1231,6 @@ a {
 @media (max-width: 660px) {
   :root {
     --container: min(100% - 32px, 1160px);
-  }
-
-  .header-motif {
-    bottom: -8px;
-    height: 18px;
-    background-size: 120px 24px;
   }
 
   .header-row {
