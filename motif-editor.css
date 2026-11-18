@@ -1,0 +1,142 @@
+.motif-editor-launch {
+  position: fixed;
+  z-index: 90;
+  right: 18px;
+  bottom: 18px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #075f80;
+  border-radius: 999px;
+  color: #fff;
+  background: #075f80;
+  box-shadow: 0 10px 28px rgb(27 29 33 / 0.22);
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.motif-editor-panel {
+  position: fixed;
+  z-index: 100;
+  top: 96px;
+  right: 18px;
+  width: min(292px, calc(100vw - 36px));
+  padding: 16px;
+  border: 1px solid #dbe5e4;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.98);
+  box-shadow: 0 18px 50px rgb(27 29 33 / 0.18);
+  color: #1b1d21;
+  font-family: "Roboto", Arial, sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(18px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.motif-editor-panel.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.motif-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.motif-editor-head strong {
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1rem;
+}
+
+.motif-editor-close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: #eef4f3;
+  cursor: pointer;
+}
+
+.motif-editor-field {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin: 9px 0;
+  font-size: 0.78rem;
+}
+
+.motif-editor-field input[type="range"] {
+  width: 100%;
+}
+
+.motif-editor-field input[type="color"] {
+  width: 100%;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid #dbe5e4;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.motif-editor-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.motif-editor-actions button,
+.motif-editor-add {
+  min-height: 38px;
+  border: 1px solid #1281aa;
+  border-radius: 7px;
+  background: #fff;
+  color: #075f80;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.motif-editor-actions button[data-action="delete"] {
+  border-color: #845339;
+  color: #845339;
+}
+
+.motif-editor-actions button[data-action="reset"] {
+  grid-column: 1 / -1;
+}
+
+.motif-editor-add {
+  width: 100%;
+  margin-top: 9px;
+}
+
+.motif-editor-status {
+  min-height: 18px;
+  margin: 8px 0 0;
+  color: #727d84;
+  font-size: 0.72rem;
+}
+
+.motif-editable {
+  outline: 2px dashed transparent;
+  outline-offset: 5px;
+  max-width: none !important;
+  transition: outline-color 120ms ease;
+}
+
+.motif-editor-active .motif-editable {
+  cursor: move;
+  outline-color: rgb(18 129 170 / 0.28);
+}
+
+.motif-editor-selected {
+  outline: 3px solid #1281aa !important;
+  outline-offset: 5px;
+}
