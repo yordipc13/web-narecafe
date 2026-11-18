@@ -1,0 +1,119 @@
+/* Posiciones exportadas del editor NARECAFÉ */
+.story-motif-ramita {
+  position: absolute;
+  left: 570px;
+  top: 487px;
+  right: auto;
+  bottom: auto;
+  width: 88px;
+  transform: rotate(5deg);
+}
+.story-motif-hummingbird {
+  position: absolute;
+  left: -65px;
+  top: -47px;
+  right: auto;
+  bottom: auto;
+  transform: rotate(5deg);
+}
+.hero-motif-left {
+  position: absolute;
+  left: 20px;
+  top: 634px;
+  right: auto;
+  bottom: auto;
+}
+.service-motif {
+  position: absolute;
+  left: 374px;
+  top: 22px;
+  right: auto;
+  bottom: auto;
+  width: 93px;
+}
+.gallery-motif {
+  position: absolute;
+  left: -61px;
+  top: -38px;
+  right: auto;
+  bottom: auto;
+  transform: rotate(7deg);
+}
+.contact-motif {
+  position: absolute;
+  left: 638px;
+  top: 378px;
+  right: auto;
+  bottom: auto;
+  width: 84px;
+}
+.motivo-1795032639373 {
+  display: none;
+  position: absolute;
+  left: 828px;
+  top: 265px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032780755 {
+  display: none;
+  position: absolute;
+  left: 877px;
+  top: 10247px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032781189 {
+  display: none;
+  position: absolute;
+  left: 861px;
+  top: 10252px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032781497 {
+  display: none;
+  position: absolute;
+  left: 870.5px;
+  top: 5303px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032781856 {
+  display: none;
+  position: absolute;
+  left: 870.5px;
+  top: 5303px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032814518 {
+  display: none;
+  position: absolute;
+  left: 940px;
+  top: 8412px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
+.motivo-1795032818686 {
+  display: none;
+  position: absolute;
+  left: 941px;
+  top: 4843px;
+  right: auto;
+  bottom: auto;
+  width: 80px;
+  transform: rotate(0deg);
+}
