@@ -2,39 +2,82 @@
   "use strict";
 
   const languageKey = "narecafe-language";
-  const currentLanguage = document.documentElement.lang === "en" ? "en" : "es";
-  const languageLinks = document.querySelectorAll("[data-language]");
-
-  function readLanguage() {
+  const storedLanguage = (() => {
     try {
       return localStorage.getItem(languageKey);
     } catch (error) {
       return null;
     }
-  }
+  })();
+  const browserLanguage = (navigator.language || "").toLowerCase().startsWith("en") ? "en" : "es";
+  let currentLanguage = window.location.pathname.startsWith("/en")
+    ? "en"
+    : (storedLanguage || browserLanguage);
 
   function saveLanguage(language) {
     try {
       localStorage.setItem(languageKey, language);
     } catch (error) {
-      // The selector still works when storage is unavailable.
+      // Language switching still works when storage is unavailable.
     }
   }
 
-  const browserLanguage = (navigator.language || "").toLowerCase().startsWith("en") ? "en" : "es";
-  const targetLanguage = readLanguage() || browserLanguage;
-  const targetLink = Array.from(languageLinks).find(function (link) {
-    return link.dataset.language === targetLanguage;
-  });
+  function applyLanguage(language) {
+    currentLanguage = language;
+    document.documentElement.lang = language;
+    const dictionary = window.NARECAFE_TRANSLATIONS && window.NARECAFE_TRANSLATIONS[language];
+    if (!dictionary) return;
 
-  if (targetLink && targetLanguage !== currentLanguage) {
-    window.location.replace(targetLink.href);
-    return;
+    document.querySelectorAll("[data-i18n]").forEach(function (element) {
+      const key = element.dataset.i18n;
+      if (dictionary[key] !== undefined) element.innerHTML = dictionary[key];
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (element) {
+      const key = element.dataset.i18nAlt;
+      if (dictionary[key] !== undefined) element.alt = dictionary[key];
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (element) {
+      const key = element.dataset.i18nAria;
+      if (dictionary[key] !== undefined) element.setAttribute("aria-label", dictionary[key]);
+    });
+    document.querySelectorAll("[data-i18n-content]").forEach(function (element) {
+      const key = element.dataset.i18nContent;
+      if (dictionary[key] !== undefined) element.setAttribute("content", dictionary[key]);
+    });
+
+    document.title = dictionary.title;
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (ogTitle) ogTitle.setAttribute("content", dictionary.title);
+    if (ogDescription) ogDescription.setAttribute("content", dictionary.ogDescription);
+    if (ogLocale) ogLocale.setAttribute("content", language === "en" ? "en_US" : "es_CR");
+    if (canonical) canonical.setAttribute("href", language === "en" ? "https://narecafe.org/en/" : "https://narecafe.org/");
+
+    const toggle = document.getElementById("language-toggle");
+    if (toggle) {
+      toggle.querySelector(".flag").className = "flag " + (language === "en" ? "flag-us" : "flag-cr");
+      toggle.querySelector(".language-name").textContent = language === "en" ? "EN" : "ES";
+    }
+
+    document.querySelectorAll("[data-language]").forEach(function (link) {
+      link.setAttribute("aria-current", link.dataset.language === language ? "page" : "false");
+    });
+
+    window.dispatchEvent(new CustomEvent("narecafe-language-change", { detail: { language: language } }));
   }
 
+  applyLanguage(currentLanguage);
+
+  const languageLinks = document.querySelectorAll("[data-language]");
   languageLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-      saveLanguage(link.dataset.language);
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      const language = link.dataset.language;
+      saveLanguage(language);
+      window.history.pushState({}, "", language === "en" ? "/en/" : "/");
+      applyLanguage(language);
     });
   });
 
@@ -43,9 +86,8 @@
     languageToggle.addEventListener("click", function () {
       const nextLanguage = currentLanguage === "es" ? "en" : "es";
       saveLanguage(nextLanguage);
-      window.location.assign(nextLanguage === "en"
-        ? (currentLanguage === "es" ? "en/" : "./")
-        : (currentLanguage === "en" ? "../" : "./"));
+      window.history.pushState({}, "", nextLanguage === "en" ? "/en/" : "/");
+      applyLanguage(nextLanguage);
     });
   }
 
@@ -83,10 +125,18 @@
   const menuToggle = document.querySelector(".menu-toggle");
   const menuBackdrop = document.querySelector(".menu-backdrop");
   const menuCloseButtons = document.querySelectorAll("[data-menu-close]");
-  const menuLabels = currentLanguage === "en"
+  let menuLabels = currentLanguage === "en"
     ? { open: "Open menu", close: "Close menu" }
     : { open: "Abrir menú", close: "Cerrar menú" };
   let menuTrigger = null;
+
+  window.addEventListener("narecafe-language-change", function (event) {
+    menuLabels = event.detail.language === "en"
+      ? { open: "Open menu", close: "Close menu" }
+      : { open: "Abrir menú", close: "Cerrar menú" };
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-label", isOpen ? menuLabels.close : menuLabels.open);
+  });
 
   function setMenu(open) {
     menu.classList.toggle("open", open);
@@ -146,7 +196,7 @@
   const galleryMore = document.getElementById("gallery-more");
   const initialGalleryCount = 12;
   const totalPhotos = 41;
-  const pathPrefix = currentLanguage === "en" ? "../" : "";
+  const pathPrefix = "/";
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const photoRatios = [
     "2200/1467", "2200/1467", "2200/1467", "2200/1467", "2200/1467",
@@ -174,6 +224,25 @@
       less: "Back to 12 photographs"
     }
   }[currentLanguage];
+
+  function updateGalleryLanguage(language) {
+    const labels = language === "en"
+      ? { open: "View photograph {number}", more: "See more photographs", less: "Back to 12 photographs" }
+      : { open: "Ver fotografía {number}", more: "Ver más fotografías", less: "Volver a 12 fotografías" };
+    galleryMore.textContent = galleryExpanded ? labels.less : labels.more;
+    galleryButtons.forEach(function (button, index) {
+      button.setAttribute("aria-label", labels.open.replace("{number}", index + 1));
+      const image = button.querySelector("img");
+      if (image) image.alt = language === "en"
+        ? "NARECAFÉ photograph " + (index + 1)
+        : "Fotografía de NARECAFÉ " + (index + 1);
+    });
+    if (dialog.open) updateDialog(activePhoto);
+  }
+
+  window.addEventListener("narecafe-language-change", function (event) {
+    updateGalleryLanguage(event.detail.language);
+  });
 
   for (let index = 1; index <= totalPhotos; index += 1) {
     const number = String(index).padStart(2, "0");

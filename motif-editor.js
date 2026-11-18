@@ -101,7 +101,7 @@
       const image = document.createElement("img");
       image.className = "motif-editable motif-custom";
       image.dataset.motifId = key;
-      image.src = state.src || ((document.documentElement.lang === "en" ? "../" : "") + "assets/graphics/grano_cafe.webp");
+      image.src = state.src || "/assets/graphics/grano_cafe.webp";
       image.alt = "";
       image.setAttribute("aria-hidden", "true");
       image.style.position = "absolute";
@@ -348,7 +348,7 @@
     image.className = "motif-editable motif-custom";
     const motifId = "motivo-" + Date.now();
     image.dataset.motifId = motifId;
-    const source = (document.documentElement.lang === "en" ? "../" : "") + "assets/graphics/grano_cafe.webp";
+    const source = "/assets/graphics/grano_cafe.webp";
     image.src = source;
     image.alt = "";
     image.setAttribute("aria-hidden", "true");
